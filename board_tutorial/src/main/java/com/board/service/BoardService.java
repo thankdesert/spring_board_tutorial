@@ -5,7 +5,7 @@ import java.util.List;
 import com.board.domain.BoardVO;
 
 public interface BoardService {
- 
- public List list() throws Exception; 
+	public List<BoardVO> list() throws Exception;
+	public void write(BoardVO vo) throws Exception;
 
 }

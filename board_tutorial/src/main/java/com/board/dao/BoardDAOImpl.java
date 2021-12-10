@@ -11,17 +11,22 @@ import com.board.domain.BoardVO;
 
 @Repository
 public class BoardDAOImpl implements BoardDAO {
-
- @Inject
- private SqlSession sql;
- 
- private static String namespace = "com.board.mappers.board";
-
- // 게시물 목록
- @Override
- public List list() throws Exception { 
-  
-  return sql.selectList(namespace + ".list");
- }
+	
+	@Inject
+	private SqlSession sql;
+	 
+	private static String namespace = "com.board.mappers.board";
+	
+	 // 게시물 목록
+	 @Override
+	public List<BoardVO> list() throws Exception { 
+		 return sql.selectList(namespace + ".list");
+	}
+	
+	@Override
+	public void write(BoardVO vo) throws Exception {
+		sql.insert(namespace+".write",vo);
+		
+	}
 
 }
