@@ -20,4 +20,12 @@
 		FROM board.tbl_board
 		WHERE bno=#{bno}
 	</select>
+	<!--  게시물 수정 -->
+	<update id="modify" parameterType="com.board.domain.BoardVO">
+		UPDATE board.tbl_board
+		SET title=#{title},
+			content=#{content},
+			writer=#{writer}
+		WHERE bno=#{bno}
+	</update>
 </mapper>
