@@ -13,5 +13,11 @@
 	<insert id="write" parameterType="com.board.domain.BoardVO">
 		INSERT INTO board.tbl_board(title,content,writer)
 		VALUES(#{title},#{content},#{writer})
-	</insert> 
+	</insert>
+	<!--  게시물 조회 -->
+	<select id="view" parameterType="int" resultType="com.board.domain.BoardVO">
+		SELECT bno,title,content,writer,regDate,viewCnt
+		FROM board.tbl_board
+		WHERE bno=#{bno}
+	</select>
 </mapper>
