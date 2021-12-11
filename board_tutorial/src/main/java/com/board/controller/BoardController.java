@@ -72,6 +72,19 @@ public class BoardController {
 		return "redirect:/board/list";
 	}
 	
+	// 게시물 목록 + 페이징 추가
+	@RequestMapping(value = "/listPage", method = RequestMethod.GET)
+	public void getListPage(Model model, @RequestParam("num") int num) throws Exception {
+		int count=service.count();
+		int postNum=10;
+		int pageNum=(int)Math.ceil((double)count/postNum);
+		int displayPost=(num-1)*postNum;
+		List list=null;
+		list=service.listPage(displayPost,postNum);
+		model.addAttribute("list",list);
+		model.addAttribute("pageNum",pageNum);
+	}
+	
 	
 	
 }

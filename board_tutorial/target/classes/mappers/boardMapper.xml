@@ -34,4 +34,16 @@
 		FROM board.tbl_board
 		WHERE bno=#{bno}
 	</delete>
+	<!-- 게시물 총 개수 -->
+	<select id="count" resultType="int">
+	SELECT COUNT(bno)
+	FROM board.tbl_board
+	</select>
+	<!-- 게시물 목록 + 페이징 -->
+	<select id="listPage" parameterType="hashMap" resultType="com.board.domain.BoardVO">
+	SELECT bno,writer,regDate,viewCnt
+	FROM board.tbl_board
+	ORDER BY bno DESC
+	limit #{displayPost},#{postNum}
+	</select>
 </mapper>
