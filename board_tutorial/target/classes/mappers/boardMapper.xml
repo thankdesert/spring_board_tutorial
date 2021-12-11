@@ -28,4 +28,10 @@
 			writer=#{writer}
 		WHERE bno=#{bno}
 	</update>
+	<!-- 게시물 삭제 -->
+	<delete id="delete" parameterType="int">
+		DELETE
+		FROM board.tbl_board
+		WHERE bno=#{bno}
+	</delete>
 </mapper>
