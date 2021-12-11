@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.board.dao.BoardDAO;
 import com.board.domain.BoardVO;
+import com.board.domain.Page;
 import com.board.service.BoardService;
 
 @Controller
@@ -75,14 +76,56 @@ public class BoardController {
 	// 게시물 목록 + 페이징 추가
 	@RequestMapping(value = "/listPage", method = RequestMethod.GET)
 	public void getListPage(Model model, @RequestParam("num") int num) throws Exception {
+		Page page=new Page();
+		
+		page.setNum(num);
+		page.setCount(service.count());
+		
+		List<BoardVO> list=null;
+		list=service.listPage(page.getDisplayPost(),page.getPostNum());
+				
+		model.addAttribute("list", list);
+		model.addAttribute("page",page);
+		
+		/*
+		model.addAttribute("pageNum", page.getPageNum());
+
+		model.addAttribute("startPageNum", page.getStartPageNum());
+		model.addAttribute("endPageNum", page.getEndPageNum());
+		 
+		model.addAttribute("prev", page.getPrev());
+		model.addAttribute("next", page.getNext());  
+		*/
+		
+		model.addAttribute("select", num);
+		/*
 		int count=service.count();
 		int postNum=10;
 		int pageNum=(int)Math.ceil((double)count/postNum);
 		int displayPost=(num-1)*postNum;
+		int pageNum_cnt=10;
+		int endPageNum=(int)(Math.ceil((double)num/(double)pageNum_cnt)*pageNum_cnt);
+		int startPageNum=endPageNum-(pageNum_cnt-1);
+		int endPageNum_tmp=(int)(Math.ceil((double)count/(double)pageNum_cnt));
+		if(endPageNum>endPageNum_tmp){
+			endPageNum=endPageNum_tmp;
+		}
+		
+		boolean prev=startPageNum==1?false:true;
+		boolean next=endPageNum*pageNum_cnt>=count?false:true;
 		List list=null;
 		list=service.listPage(displayPost,postNum);
 		model.addAttribute("list",list);
 		model.addAttribute("pageNum",pageNum);
+		
+		model.addAttribute("startPageNum",startPageNum);
+		model.addAttribute("endPageNum",endPageNum);
+		
+		model.addAttribute("prev", prev);
+		model.addAttribute("next", next);
+		
+		model.addAttribute("select",num);
+		*/
 	}
 	
 	
