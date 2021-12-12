@@ -41,7 +41,7 @@
 	</select>
 	<!-- 게시물 목록 + 페이징 -->
 	<select id="listPage" parameterType="hashMap" resultType="com.board.domain.BoardVO">
-	SELECT bno,title,writer,regDate,viewCnt
+	SELECT bno,writer,regDate,viewCnt
 	FROM board.tbl_board
 	ORDER BY bno DESC
 	limit #{displayPost},#{postNum}
