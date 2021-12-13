@@ -75,6 +75,7 @@ public class BoardController {
 	// 게시물 목록 + 페이징 추가
 	@RequestMapping(value = "/listPage", method = RequestMethod.GET)
 	public void getListPage(Model model, @RequestParam("num") int num) throws Exception {
+		/*
 		int count=service.count();
 		int postNum=10;
 		int pageNum=(int)Math.ceil((double)count/postNum);
@@ -101,7 +102,7 @@ public class BoardController {
 		model.addAttribute("next", next);
 		
 		model.addAttribute("select",num);
-		
+		*/
 	}
 	
 	
