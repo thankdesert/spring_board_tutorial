@@ -72,4 +72,15 @@ public class BoardDAOImpl implements BoardDAO {
 		  return sql.selectList(namespace + ".listPageSearch", data);
 	}
 
+	@Override
+	public int searchCount(String searchType, String keyword) throws Exception {
+		// TODO Auto-generated method stub
+		HashMap data = new HashMap();
+		 
+		data.put("searchType", searchType);
+		data.put("keyword", keyword);
+		 
+		return sql.selectOne(namespace + ".searchCount", data);
+	}
+
 }
