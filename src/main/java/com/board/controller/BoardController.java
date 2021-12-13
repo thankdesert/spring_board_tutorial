@@ -86,7 +86,7 @@ public class BoardController {
 		if(endPageNum>endPageNum_tmp){
 			endPageNum=endPageNum_tmp;
 		}
-		
+		//test
 		boolean prev=startPageNum==1?false:true;
 		boolean next=endPageNum*pageNum_cnt>=count?false:true;
 		List list=null;
